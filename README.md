@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# To reproduce the issue
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+bun install
+bun run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+````
+bun run build
+$ next build
+   ▲ Next.js 16.0.0 (Turbopack)
+   - Experiments (use with caution):
+     · serverActions
+     ✓ turbopackFileSystemCacheForDev
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   Creating an optimized production build ...
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./src/app/page.tsx
+Error evaluating Node.js code
+ResolveMessage: Cannot find module './node_modules/.bun/babel-plugin-react-compiler@1.0.0/node_modules/babel-plugin-react-compiler' from '/Users/jayllyz/code/my-app/node_modules/.bun/next@16.0.0+f98dd74b6b4c2783/node_modules/next/dist/compiled/babel/bundle.js'
 
-## Learn More
+Make sure that all the Babel plugins and presets you are using
+are defined as dependencies or devDependencies in your package.json
+file. It's possible that the missing plugin is loaded by a preset
+you are using that forgot to add the plugin to its dependencies: you
+can workaround this problem by explicitly adding the missing package
+to your top-level package.json.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    at <unknown> (file. It's possible that the missing plugin is loaded by a preset)
+    at processTicksAndRejections (null)
+error: script "build" exited with code 1
+```
