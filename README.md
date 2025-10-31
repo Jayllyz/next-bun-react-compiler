@@ -5,10 +5,10 @@ bun install
 bun run build
 ```
 
-````
+```
 bun run build
 $ next build
-   ▲ Next.js 16.0.0 (Turbopack)
+   ▲ Next.js 16.0.1 (Turbopack)
    - Experiments (use with caution):
      · serverActions
      ✓ turbopackFileSystemCacheForDev
