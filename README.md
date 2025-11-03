@@ -5,6 +5,7 @@ bun install
 bun run build
 ```
 
+It fails with Turbopack:
 ```
 bun run build
 $ next build
@@ -42,4 +43,26 @@ Import traces:
     at <unknown> (file. It's possible that the missing plugin is loaded by a preset)
     at processTicksAndRejections (null)
 error: script "build" exited with code 1
+```
+
+It works when using webpack:
+```
+bun run build:webpack
+$ next build --webpack
+   ▲ Next.js 16.0.1 (webpack)
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 3.6s
+ ✓ Finished TypeScript in 984.7ms
+ ✓ Collecting page data in 227.0ms
+ ✓ Generating static pages (4/4) in 15.8s
+ ✓ Collecting build traces in 5.7s
+ ✓ Finalizing page optimization in 5.9s
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
 ```
